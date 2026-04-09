@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Validação com Regex</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input.valido {
+            border-color: green;
+        }
+
+        input.invalido {
+            border-color: red;
+        }
+
+        .mensagem {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .valido-texto {
+            color: green;
+        }
+
+        .invalido-texto {
+            color: red;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Validação com Regex</h2>
+        <input type="text" id="numero" placeholder="Digite um número">
+        <br>
+        <button onclick="validar()">Validar</button>
+        <div id="mensagem" class="mensagem"></div>
+    </div>
+
+    <script>
+        function validar() {
+            const input = document.getElementById("numero");
+            const mensagem = document.getElementById("mensagem");
+
+            const regex = /^\d+(\.\d+)?$/;
+            const valor = input.value;
+
+            if (regex.test(valor)) {
+                input.classList.remove("invalido");
+                input.classList.add("valido");
+
+                mensagem.textContent = "✔ Valor válido!";
+                mensagem.className = "mensagem valido-texto";
+            } else {
+                input.classList.remove("valido");
+                input.classList.add("invalido");
+
+                mensagem.textContent = "✖ Valor inválido! Digite um número válido.";
+                mensagem.className = "mensagem invalido-texto";
+            }
+        }
+    </script>
+
+</body>
+</html>
